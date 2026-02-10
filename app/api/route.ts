@@ -24,11 +24,11 @@ export async function POST(req: Request){
         if(!text){
               return NextResponse.json({
                 message: "text is required"}, 
-                {status: 400});
+                {status: 400}); 
+        } 
                 await db.insert(todos).values({text});  
                 return NextResponse.json({message: "Todo created successfully"}, 
-                    {status: 200});  
-        } 
+                    {status: 200}); 
         
 }
     catch(error){
