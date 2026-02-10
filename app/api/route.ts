@@ -11,10 +11,29 @@ export async function GET(){
         return NextResponse.json(data, {status:200});
     }catch(error){
         console.error("Error fetching data:", error);
-        return NextResponse.json({message: "save Error"}, {status: 500});
+        return NextResponse.json({message: "server Error"}, {status: 500});
     }
 }
-Create = Post
-Read = GET
-Update = PATCH 
-DELETE = DELETE
+
+
+export async function POST(req: Request){
+
+    try {
+        const body = await req.json();
+        const { text } = body;
+        if(!text){
+              return NextResponse.json({
+                message: "text is required"}, 
+                {status: 400});
+                await db.insert(todos).values({text});  
+                return NextResponse.json({message: "Todo created successfully"}, 
+                    {status: 200});  
+        } 
+        
+}
+    catch(error){
+        console.error("POST Error creating todo:", error);
+        return NextResponse.json({message: "server Error"}, 
+            {status: 500});
+    }
+}
