@@ -32,7 +32,7 @@ export async function PATCH(
     }
 
     return NextResponse.json(
-      { success: "Todo Updated", todo: updatedRows[0] }, 
+      { success: "Todo column done update ", todo: updatedRows[0] }, 
       { status: 200 }
     );
 
