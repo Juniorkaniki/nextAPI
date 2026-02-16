@@ -5,7 +5,7 @@ import { eq, sql } from "drizzle-orm"; // Ajout de 'sql' pour l'astuce
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> } // ✅ Indispensable en Next.js 15
+  { params }: { params: Promise<{ id: string }> } //  Indispensable en Next.js 15
 ) {
   try {
     // 1. On récupère l'ID de manière asynchrone
@@ -21,10 +21,10 @@ export async function PATCH(
     const updatedRows = await db
       .update(todos)
       .set({ 
-        done: sql`NOT ${todos.done}` // ✅ Inverse la valeur actuelle (true -> false, false -> true)
+        done: sql`NOT ${todos.done}` //  Inverse la valeur actuelle (true -> false, false -> true)
       })
       .where(eq(todos.id, id))
-      .returning(); // ✅ On récupère le résultat pour vérifier si ça a marché
+      .returning(); //  On récupère le résultat pour vérifier si ça a marché
 
     // 3. Si rien n'a été retourné, c'est que l'ID n'existait pas
     if (updatedRows.length === 0) {
